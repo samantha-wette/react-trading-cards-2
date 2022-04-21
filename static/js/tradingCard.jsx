@@ -60,12 +60,16 @@ function TradingCard(props) {
 }
 
 function TradingCardContainer() {
-  
+
+
   React.useEffect(() => {
-    fetch("/cards.json")
-    .then(response => response.json())
-    .then(cardData => {setCards(cardData.cards)
-    })
+    const fetchData = async () => {
+      const response = await fetch("/cards.json")
+      const cardData = await response.json()
+      setCards(cardData.cards)
+    }
+    
+    fetchData();
   }, []);
 
   
